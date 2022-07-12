@@ -1,1 +1,1 @@
-# react-study
+# my-react-study
