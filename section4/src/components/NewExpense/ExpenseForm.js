@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import "./ExpenseForm.css";
 
-const ExpenseForm = () => {
+const ExpenseForm = (props) => {
   // 방법 1.
   const [enteredTitle, setEnteredTitle] = useState("");
   const [enteredAmount, setEnteredAmount] = useState("");
@@ -48,7 +48,7 @@ const ExpenseForm = () => {
       date: new Date(enteredDate),
     };
 
-    console.log(expenseData);
+    props.onSaveExpenseData(expenseData); // 부모에게 받은 데이터 추가 함수
 
     setEnteredTitle("");
     setEnteredAmount("");
@@ -83,7 +83,7 @@ const ExpenseForm = () => {
             min="2019-01-01"
             max="2022-12-31"
             value={enteredDate}
-            nChange={dateChangeHandler}
+            onChange={dateChangeHandler}
           />
         </div>
       </div>
