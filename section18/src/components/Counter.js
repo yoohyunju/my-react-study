@@ -5,7 +5,8 @@ import classes from './Counter.module.css';
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter); // 상태의 일부를 추출해서 보냄
+  const counter = useSelector(state => state.counter); // 스토어의 상태값을 반환
+  const show = useSelector(state => state.showCounter);
 
   const IncrementHandler = () => {
     dispatch({ type: 'increment' });
@@ -19,12 +20,14 @@ const Counter = () => {
     dispatch({ type: 'decrement' });
   }
 
-  const toggleCounterHandler = () => {};
+  const toggleCounterHandler = () => {
+    dispatch({ type: 'toggle' });
+  };
 
   return (
     <main className={classes.counter}>
       <h1>Redux Counter</h1>
-      <div className={classes.value}>{counter}</div>
+      {show && <div className={classes.value}>{counter}</div>}
       <div>
         <button onClick={IncrementHandler}>Increment</button>
         <button onClick={IncreaseHandler}>Increase by 5</button>
