@@ -1,25 +1,25 @@
-import { useSelector, useDispatch } from 'react-redux';
-import classes from './Counter.module.css';
-import { counterActions } from '../store/index';
+import { useSelector, useDispatch } from "react-redux";
+import classes from "./Counter.module.css";
+import { counterActions } from "../store/counter";
 // import { connect } from 'react-redux';
 // import { Component } from 'react';
 
 const Counter = () => {
   const dispatch = useDispatch();
-  const counter = useSelector(state => state.counter); // 스토어의 상태값을 반환
-  const show = useSelector(state => state.showCounter);
+  const counter = useSelector((state) => state.counter.counter); // 스토어의 상태값을 반환
+  const show = useSelector((state) => state.counter.showCounter);
 
   const IncrementHandler = () => {
     dispatch(counterActions.increment());
-  }
+  };
 
   const IncreaseHandler = () => {
     dispatch(counterActions.increase(10)); // { type: SOME_UNIQUE_IDENTIFIER, payload: 10 }
-  }
+  };
 
   const DecrementHandler = () => {
     dispatch(counterActions.decrement());
-  }
+  };
 
   const toggleCounterHandler = () => {
     dispatch(counterActions.toggleCounter());
