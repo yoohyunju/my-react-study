@@ -1,9 +1,11 @@
 import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
 
 import classes from "./AuthForm.module.css";
 import AuthContext from "../../store/auth-context";
 
 const AuthForm = () => {
+  const history = useHistory();
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
 
@@ -66,6 +68,7 @@ const AuthForm = () => {
       })
       .then((data) => {
         authCtx.login(data.idToken); // 로그인 성공시 토큰 설정
+        history.replace('/'); // 리다이렉션
       })
       .catch((err) => {
         alert(err.message);
