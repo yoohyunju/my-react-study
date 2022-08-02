@@ -67,8 +67,11 @@ const AuthForm = () => {
         }
       })
       .then((data) => {
-        authCtx.login(data.idToken); // 로그인 성공시 토큰 설정
-        history.replace('/'); // 리다이렉션
+        const expirationTime = new Date(
+          new Date().getTime() + +data.expiresIn * 1000
+        );
+        authCtx.login(data.idToken, expirationTime.toISOString()); // 로그인 성공시 토큰 설정
+        history.replace("/"); // 리다이렉션
       })
       .catch((err) => {
         alert(err.message);

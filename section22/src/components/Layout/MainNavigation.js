@@ -9,6 +9,11 @@ const MainNavigation = () => {
 
   const isLoggedIn = authCtx.isLoggedIn; // 초기값 false
 
+  const logoutHandler = () => {
+    authCtx.logout();
+    // 리다이렉션 필요
+  }
+
   return (
     <header className={classes.header}>
       <Link to="/">
@@ -28,7 +33,7 @@ const MainNavigation = () => {
           )}
           {isLoggedIn && (
             <li>
-              <button>Logout</button>
+              <button onClick={logoutHandler}>Logout</button>
             </li>
           )}
         </ul>
